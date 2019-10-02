@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container"></div>
+            <nav class="navbar navbar-dark bg-dark">
+                <div class="container"></div>
+                <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="{% url 'index' %}">Django</a>
+                    <a class="navbar-link" href="{% url 'admin:index' %}">Admin</a>
+                    <a class="navbar-link" href="{% url 'basicapp:register' %}">Register</a>
+
+                    {% if user.is_authenticated %}
+                    <a class="navbar-link" href="{% url 'basicapp:userlogout' %}">Logout</a>
+                    {% else %}
+                    <a class="navbar-link" href="{% url 'basicapp:userlogin' %}">Login</a>
+                    {% endif %}
+
+                </ul>
+           </nav>    
+        </div>
+        
+
+        <div class="container">
+
+            {% block body_block%}
+            <!-- Anything outside of this will be inherited if you entend -->
+            {% endblock %}
+
+        </div>
+        
+    </body>
+</html>
